@@ -1,14 +1,11 @@
 const express = require('express');
 const cors = require('cors');
-const { verify } = require('jsonwebtoken');
-const { verifyUser } = require('./middleware');
-const userRoutes = require('./routes/userRoutes');
+const { verifyUser } = require('../middleware');
+const userRoutes = require('../routes/userRoutes');
 
 const app = express();
-const PORT = process.env.PORT || 3001;
 
 app.use(cors());
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -22,8 +19,5 @@ app.get('/', async (req, res) => {
 });
 
 app.use("/users", verifyUser, userRoutes);
-app.listen(PORT, () => {
-  console.log(`Server is running on reverse-proxy-007-9si2.vercel.app/${PORT}`);
-});
 
-
+module.exports = app;
