@@ -295,6 +295,7 @@ app.get('/proxy/:encodedUrl', async (req, res) => {
       'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
       'Access-Control-Allow-Headers': '*'
     });
+    console.log(`Proxied URL: ${targetUrl}`);
 
     res.status(response.status).send(response.data);
   } catch (error) {
